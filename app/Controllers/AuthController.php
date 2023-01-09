@@ -2,23 +2,54 @@
 
 namespace App\Controllers;
 use App\Models\PelangganModel;
+use App\Models\AdminModel;
 
 class AuthController extends BaseController
 {
     // login untuk admin
     public function authAdmin() {
-        return view('login');
+
+        if(session()->get('admin_id')){
+            return redirect()->to('/dashboard/home'); 
+        } 
+
+        return view('admin/admin_login.php');
     }
 
     public function authAdminAction() {
-        // return view('login');
+        $session = session();
+        $model = new AdminModel();
+
+        $username = $this->request->getVar('username');
+        $password = $this->request->getVar('password');
+
+        $data = $model->where('username', $username)->first();
+
+        if($data) {
+            $pass = $data["password"];
+            $verif_pass = password_verify($password, $pass);
+            if($verif_pass){
+                $ses_data = [
+                    'admin_id'       => $data['id'],
+                    'username'       => $data['username'],
+                    'store'          => $data['store'],
+                    'admin_role'     => $data['id_roles']
+                ];
+                $session->set($ses_data);
+                return redirect()->to('/dashboard/home');
+            } else{
+                $session->setFlashdata('msg', 'Wrong Username or Password');
+                return redirect()->to('/admin');
+            }
+        }
+
     }
 
     public function authPelanggan() { 
 
         if(session()->get('pelanggan_id')){
             return redirect()->to('/home'); 
-        }
+        } 
 
         return view('pelanggan/pelanggan_login');
     }

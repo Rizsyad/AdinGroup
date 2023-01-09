@@ -1,7 +1,9 @@
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="//cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
+    <?php if($userType == "pelanggan"): ?>
     <script>
         let button = document.getElementsByClassName("btn-custome-success");
 
@@ -40,8 +42,6 @@
 
             const removeLocalStorage = (id) => {
                 const db = getLocalStorage("pemesanan");
-
-                // console.log(db)
 
                 const updateData = db.filter(element => element !== id);
                 localStorage.setItem('pemesanan', JSON.stringify(updateData));
@@ -127,6 +127,15 @@
             })
         })
     </script>
+    <?php endif; ?>
+
+    <?php if($userType == 'admin'): ?>
+    <script>
+        $(document).ready(function(){
+            $("table").DataTable();
+        })
+    </script>
+    <?php endif; ?>
 
 </body>
 

@@ -10,7 +10,8 @@ class PelangganController extends BaseController
 
     function __construct(){
         $this->data = array(
-            'time' => Time::now('Asia/Jakarta', 'en_US')
+            'time' => Time::now('Asia/Jakarta', 'en_US'),
+            'userType' => "pelanggan"
         );
         
     }

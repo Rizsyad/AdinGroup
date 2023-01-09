@@ -41,22 +41,21 @@ $routes->get('/login', 'AuthController::authPelanggan');
 $routes->post('/login', 'AuthController::authPelangganAction');
 $routes->get('/logout', 'AuthController::logoutPelanggan');
 
-$routes->get('/home', 'PelangganController::index', ['filter' => 'auth']);
-$routes->get('/daftar-menu', 'PelangganController::daftarMenu', ['filter' => 'auth']);
-$routes->get('/orders', 'PelangganController::pemesanan', ['filter' => 'auth']);
+$routes->get('/home', 'PelangganController::index', ['filter' => 'authPelanggan']);
+$routes->get('/daftar-menu', 'PelangganController::daftarMenu', ['filter' => 'authPelanggan']);
+$routes->get('/orders', 'PelangganController::pemesanan', ['filter' => 'authPelanggan']);
 
 $routes->get('/admin', 'AuthController::authAdmin');
 $routes->post('/admin', 'AuthController::authAdminAction');
 
 $routes->group('dashboard', static function ($routes) {
-    $routes->get('/', 'AdminController::index');
-    $routes->get('daftar-menu', 'AdminController::daftarMenu');
-    $routes->get('orders', 'AdminController::pemesanan');
-    
-    // $routes->get('/table', 'AdminController::pemesanan');
-    // $routes->get('/kategori', 'AdminController::pemesanan');
+    $routes->get('home', 'AdminController::index', ['filter' => 'authAdmin']);
+    $routes->get('daftar-menu', 'AdminController::daftarMenu', ['filter' => 'authAdmin']);
+    $routes->get('orders', 'AdminController::pemesanan', ['filter' => 'authAdmin']);
+    $routes->get('table', 'AdminController::meja', ['filter' => 'authAdmin']);
+    $routes->get('kategori', 'AdminController::kategori', ['filter' => 'authAdmin']);
 
-    $routes->get('/logout', 'AuthController::logoutAdmin');
+    $routes->get('logout', 'AuthController::logoutAdmin');
 });
 
 /*
