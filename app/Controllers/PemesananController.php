@@ -2,25 +2,53 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\I18n\Time;
+
 class PemesananController extends BaseController
 {
-    public function index()
-    {
-        return view('pelanggan_home');
-    }
+    // var $data = array();
 
-    public function daftarMenu()
-    {
-        return view('pelanggan_daftarmenu');
-    }
+    // function __construct(){
+    //     $this->data = array(
+    //         'time' => Time::now('Asia/Jakarta', 'en_US')
+    //     );
+        
+    // }
 
-        public function pemesanan()
-    {
-        return view('pelanggan_pemesanan');
-    }
+    // public function index()
+    // {
+    //     $this->data["title"] = "Pemesanan | Home";
+    //     $this->data['menuActive'] = "home";
 
-    public function indexAdmin()
-    {
-        return view('welcome_message');
-    }
+    //     return view("templates/header", $this->data)
+    //     .view("templates/navbar", $this->data)
+    //     .view("pelanggan_home", $this->data)
+    //     .view("templates/footer");
+    // }
+
+    // public function daftarMenu()
+    // {
+    //     $this->data["title"] = "Pemesanan | Daftar Menu";
+    //     $this->data['menuActive'] = "daftarMenu";
+
+    //     return view("templates/header", $this->data)
+    //     .view("templates/navbar", $this->data)
+    //     .view('pelanggan_daftarmenu', $this->data)
+    //     .view("templates/footer");
+
+
+    // }
+
+    // public function pemesanan()
+    // {
+    //     $this->data["title"] = "Pemesanan | Pesanan Anda";
+    //     $this->data['menuActive'] = "pesanan";
+
+    //     return view("templates/header", $this->data)
+    //     .view("templates/navbar", $this->data)
+    //     .view('pelanggan_pemesanan', $this->data)
+    //     .view("templates/footer");
+
+    // }
+
 }

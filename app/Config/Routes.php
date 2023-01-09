@@ -37,20 +37,26 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
-$routes->get('/home', 'PemesananController::index');
-$routes->get('/daftar-menu', 'PemesananController::daftarMenu');
-$routes->get('/orders', 'PemesananController::pemesanan');
-
-
 $routes->get('/login', 'AuthController::authPelanggan');
-$routes->get('/admin', 'AuthController::auth');
+$routes->post('/login', 'AuthController::authPelangganAction');
+$routes->get('/logout', 'AuthController::logoutPelanggan');
+
+$routes->get('/home', 'PelangganController::index', ['filter' => 'auth']);
+$routes->get('/daftar-menu', 'PelangganController::daftarMenu', ['filter' => 'auth']);
+$routes->get('/orders', 'PelangganController::pemesanan', ['filter' => 'auth']);
+
+$routes->get('/admin', 'AuthController::authAdmin');
+$routes->post('/admin', 'AuthController::authAdminAction');
 
 $routes->group('dashboard', static function ($routes) {
-    $routes->get('/', 'DashboardController::index');
-    $routes->get('orders', 'PemesananController::indexAdmin');
-    $routes->get('meja', 'MejaController::index');
-    $routes->get('menu', 'MenuController::index');
-    $routes->get('kategori', 'KategoriController::index');
+    $routes->get('/', 'AdminController::index');
+    $routes->get('daftar-menu', 'AdminController::daftarMenu');
+    $routes->get('orders', 'AdminController::pemesanan');
+    
+    // $routes->get('/table', 'AdminController::pemesanan');
+    // $routes->get('/kategori', 'AdminController::pemesanan');
+
+    $routes->get('/logout', 'AuthController::logoutAdmin');
 });
 
 /*

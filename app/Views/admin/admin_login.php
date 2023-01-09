@@ -10,15 +10,26 @@
 <body>
     <div class="vh-100 d-flex justify-content-center align-items-center">
             <div class="col-md-4 p-5 shadow-sm border rounded-3">
-                <h2 class="text-center mb-4 text-primary">Login Pelanggan</h2>
-                <form>
+                <h2 class="text-center mb-4 text-primary">Pelanggan</h2>
+                <?php $validation = \Config\Services::validation(); ?>
+                <form method="post">
                     <div class="mb-3">
                         <label for="name" class="form-label">Nama</label>
-                        <input type="text" class="form-control border border-primary" id="name" aria-describedby="nameHelp">
+                        <input type="text" class="form-control border border-primary" id="name" aria-describedby="nameHelp" name="nama">
+                         <?php if($validation->getError('nama')) {?>
+                            <div class='alert alert-danger mt-2'>
+                                <?= $error = $validation->getError('nama'); ?>
+                            </div>
+                        <?php }?>
                     </div>
                     <div class="mb-3">
                         <label for="notlpn" class="form-label">No Telp.</label>
-                        <input type="text" class="form-control border border-primary" id="notlpn">
+                        <input type="text" class="form-control border border-primary" id="notlpn" name="notlpn">
+                        <?php if($validation->getError('notlpn')) {?>
+                            <div class='alert alert-danger mt-2'>
+                                <?= $error = $validation->getError('notlpn'); ?>
+                            </div>
+                        <?php }?>
                     </div>
                     <div class="d-grid">
                         <button class="btn btn-primary" type="submit">Login / Register</button>
