@@ -22,7 +22,7 @@
             <a class="nav-link <?= $menuActive == 'daftarMenu' ? 'active' : ''?>" href="<?=base_url("$linkAdd/daftar-menu")?>">Daftar Menu</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link <?= $menuActive == 'pesanan' ? 'active' : ''?>" href="<?=base_url("$linkAdd/orders")?>">Pesanan Anda</a>
+            <a class="nav-link <?= $menuActive == 'pesanan' ? 'active' : ''?>" href="<?=base_url("$linkAdd/orders")?>">Pesanan <?= $userType == 'admin' ? '' : 'Anda'?></a>
           </li>
           <?php if($userType == 'admin'): ?>
           <li class="nav-item"><a href="<?=base_url("$linkAdd/table")?>" class="nav-link <?= $menuActive == 'meja' ? 'active' : ''?>">Table</a></li>
